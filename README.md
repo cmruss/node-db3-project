@@ -105,7 +105,17 @@ The following endpoints are available to test the functionality of the model met
 
 -   In [SQL Try Editor at W3Schools.com](https://www.w3schools.com/Sql/tryit.asp?filename=trysql_select_top):
     -   Displays CategoryName and a new column called Count that shows how many products are in each category. Shows 8 records.
+
+    SELECT  CategoryName, COUNT (CategoryName) AS Count FROM [Categories] AS c
+    JOIN [Products] AS p ON c.CategoryID = p.CategoryID
+    GROUP BY CategoryName
+    ORDER BY Count DESC;
+
     -   Display OrderID and a column called ItemCount that shows the total number of products placed on the order. Shows 196 records.
+
+    SELECT OrderID, SUM (Quantity) AS ItemCount FROM [OrderDetails]
+    GROUP BY OrderID;
+
 -   Add the following method to your API
     -   `addStep(step, scheme_id)`: This method expects a step object and a scheme id. It inserts the new step into the database, correctly linking it to the intended scheme.
     -   You may use `POST /api/schemes/:id/addStep` to test this method.
